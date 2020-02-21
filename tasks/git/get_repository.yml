@@ -1,0 +1,75 @@
+---
+- name: Set up personal GIT-Repository
+  git:
+    # repo: 'https://msc1917@bitbucket.org/msc1917/privatecode.git'
+    repo: 'git@bitbucket.org:msc1917/privatecode.git'
+    dest: /home/{{ default_user.dev_user }}/script/baikonur
+    version: development
+    accept_hostkey: yes
+    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    update: no
+  become: yes
+  become_user: "{{ default_user.dev_user }}"
+  when: 
+    - development.get_git_repositories
+    # - development.repository_baikonur
+
+- name: Set up ansible GIT-Repository (Production)
+  git:
+    # repo: 'https://msc1917@bitbucket.org/msc1917/privatecode.git'
+    repo: 'git@bitbucket.org:msc1917/ansible.git'
+    dest: /home/{{ default_user.dev_user }}/script/ansible-prod
+    version: master
+    accept_hostkey: yes
+    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    update: no
+  become: yes
+  become_user: "{{ default_user.dev_user }}"
+  when: 
+    - "'development' in ansible_release"
+    - do_ansible
+    - development.get_git_repositories
+    # - development.repository_baikonur
+
+- name: Set up ansible GIT-Repository (Development)
+  git:
+    # repo: 'https://msc1917@bitbucket.org/msc1917/privatecode.git'
+    repo: 'git@bitbucket.org:msc1917/ansible.git'
+    dest: /home/{{ default_user.dev_user }}/script/ansible-dev
+    version: development
+    accept_hostkey: yes
+    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    update: no
+  become: yes
+  become_user: "{{ default_user.dev_user }}"
+  when: 
+    - "'production' in ansible_release"
+    - do_ansible
+    - development.get_git_repositories
+    # - development.repository_baikonur
+
+- name: Set up work GIT-Repository
+  git:
+    # repo: 'https://msc1917@bitbucket.org/msc1917/workcode.git'
+    repo: 'git@bitbucket.org:msc1917/workcode.git'
+    dest: /home/{{ default_user.dev_user }}/script/itsv
+    accept_hostkey: yes
+    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    update: no
+  become: yes
+  become_user: "{{ default_user.dev_user }}"
+  when: 
+    - development.get_git_repositories
+    # - development.repository_itsv
+
+- name: Update .profile with PYTHONPATH
+  lineinfile:
+    dest: "/home/{{ default_user.dev_user }}/.profile"
+    line: 'export PYTHONPATH=/home/{{ default_user.dev_user }}/script/baikonur/python/modules:/home/{{ default_user.dev_user }}/scripts/itsv/functions/modules:$PYTHONPATH'
+    insertafter: "EOF"
+    regexp: '^export PYTHONPATH=' 
+    state: present
+  become: yes
+  when:
+    - do_git is defined
+    - do_git

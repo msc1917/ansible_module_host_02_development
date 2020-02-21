@@ -1,0 +1,44 @@
+hardware: []
+
+software:
+  - git
+
+services:
+  - ssh
+  - avahi
+
+enviroment:
+  gui_system: false
+
+development:
+  get_git_repositories: true
+  repository_baikonur: true
+  repository_itsv: true
+
+hostfile: 
+  create: true
+  full: false
+
+kernel:
+  kernel_modules: true
+
+ml_engines: []
+
+do_mount_filesystems: true
+do_software_upgrade: true
+do_ansible: false
+
+ansible_release:
+  - development
+  - production
+
+git_user:
+  name: Martin Schatz
+  email: martin.schatz@gmail.com
+
+use_ansible: prod
+
+ansible_dir: 
+  dev: "script/ansible-dev"
+  prod: "script/ansible-prod"
+  copy: "script/ansible"

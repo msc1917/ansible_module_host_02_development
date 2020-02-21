@@ -1,0 +1,17 @@
+---
+- name: Check for development-user
+  getent: 
+    database: passwd 
+    key: "{{ default_user.dev_user }}"
+  become: yes
+  register: dev_user_exists
+
+- name: Set up system for development
+  include_tasks: system/main.yml
+
+- name: Set up system for ansible
+  include_tasks: ansible/main.yml
+
+- name: Set up GIT-Repositories for development-user
+  include_tasks: git/main.yml
+  when: not dev_user_exists.failed

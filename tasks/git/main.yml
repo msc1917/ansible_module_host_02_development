@@ -1,0 +1,6 @@
+---
+- name: Set up GIT for development-user
+  include_tasks: git/setup.yml
+
+- name: Clone GIT-Repositories for development-user
+  include_tasks: git/get_repository.yml
