@@ -1,12 +1,10 @@
 # Basis-Ansible-Konfiguration fuer Baikonur-Netzwerk
 Rollen-Definitionen zum Einrichten des Heimnetzwerkes
 
-## Rolle "development"
+## Rolle "host_02_development"
 Einrichten der Hosts mit Entwickler-Tools und Verzeichnissen
 
 ## Verzeichnis "files"
 Files, welche von der Rolle benötigt werden könnten
 
 ## Files:
-* **id_rsa.git:**
-* **id_rsa.git.pub:**

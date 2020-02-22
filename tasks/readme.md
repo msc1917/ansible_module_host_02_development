@@ -1,15 +1,18 @@
 # Basis-Ansible-Konfiguration fuer Baikonur-Netzwerk
 Rollen-Definitionen zum Einrichten des Heimnetzwerkes
 
-## Rolle "development"
+## Rolle "host_02_development"
 Einrichten der Hosts mit Entwickler-Tools und Verzeichnissen
 
 ## Verzeichnis "tasks"
 Playbook-Tasks, welche in der Rolle durchgeführt werden
 
 ## Files:
-* **adapt_user_development.yml:**
-* **git_schama.yml:**
+* **ansible/main.yml:**
+* **ansible/setup.yml:**
+* **git/get_repository.yml:**
+* **git/main.yml:**
+* **git/setup.yml:**
 * **main.yml:**
-* **setup_ansible.yml:**
-* **setup_system.yml:**
+* **system/directories.yml:**
+* **system/main.yml:**
