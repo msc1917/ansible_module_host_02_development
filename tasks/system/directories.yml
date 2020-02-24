@@ -10,6 +10,8 @@
    - '/home/{{ default_user.dev_user }}/script'
    - '/home/{{ default_user.dev_user }}/log'
    - '/home/{{ default_user.dev_user }}/data'
+   - '/home/{{ default_user.dev_user }}/lib'
+   - '/home/{{ default_user.dev_user }}/etc'
    - '/home/{{ default_user.dev_user }}/script/baikonur'
    - '/home/{{ default_user.dev_user }}/script/itsv'
    - '/home/{{ default_user.dev_user }}/data/baikonur'
