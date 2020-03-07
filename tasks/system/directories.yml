@@ -4,6 +4,7 @@
     path: "{{ item }}"
     state: directory
     owner: "{{ default_user.dev_user }}"
+    group: "{{ default_user.dev_user }}"
     mode: '0775'
   become: yes
   with_items:

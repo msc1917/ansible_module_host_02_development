@@ -32,3 +32,9 @@
     scope: global
     value: '{{ git_user.email }}'
   become_user: "{{ default_user.dev_user }}"
+
+- git_config:
+    name: core.sshCommand
+    scope: global
+    value: 'ssh -i ~/.ssh/id_rsa.git -F /dev/null'
+  become_user: "{{ default_user.dev_user }}"

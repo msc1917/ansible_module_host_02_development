@@ -1,0 +1,7 @@
+---
+- name: Install Python PIP
+  apt:
+    name: [ "python", "python3", "python-pip", "python3-pip" ]
+    state: present
+    update_cache: no
+  become: yes
