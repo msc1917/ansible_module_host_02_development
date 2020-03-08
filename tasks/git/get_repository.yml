@@ -75,5 +75,5 @@
     state: present
   become: yes
   when:
-    - do_git is defined
-    - do_git
+    - development.get_git_repositories is defined
+    - development.get_git_repositories
