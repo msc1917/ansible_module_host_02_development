@@ -1,24 +1,31 @@
 ---
 - name: Create directories for Development-User
   file:
-    path: "{{ item }}"
+    path: "{{ item.directory }}"
     state: directory
     owner: "{{ default_user.dev_user }}"
     group: "{{ default_user.dev_user }}"
     mode: '0775'
   become: yes
   with_items:
-   - '/home/{{ default_user.dev_user }}/script'
-   - '/home/{{ default_user.dev_user }}/log'
-   - '/home/{{ default_user.dev_user }}/data'
-   - '/home/{{ default_user.dev_user }}/lib'
-   - '/home/{{ default_user.dev_user }}/etc'
-   - '/home/{{ default_user.dev_user }}/script/baikonur'
-   - '/home/{{ default_user.dev_user }}/script/itsv'
-   - '/home/{{ default_user.dev_user }}/data/baikonur'
-   - '/home/{{ default_user.dev_user }}/data/itsv'
-   - '/home/{{ default_user.dev_user }}/log/baikonur'
-   - '/home/{{ default_user.dev_user }}/log/itsv'
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/script'               }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/log'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data'                 }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/lib'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/etc'                  }
+   - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/script/kubernetes'    }
+   - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/script/ansible'       }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/baikonur'      }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/itsv'          }
+   - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/data/kubernetes'      }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/baikonur'        }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/itsv'            }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/log/baikonur'         }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/log/itsv'             }
+   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/lib/git'              }
+   - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/lib/git/ansible-dev'  }
+   - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/lib/git/ansible-prod' }
   when:
    - ("git" in software)
    - development.get_git_repositories
+   - ( item["software"] == 'all' or item["software"] in software )

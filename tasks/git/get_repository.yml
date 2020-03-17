@@ -34,7 +34,7 @@
   git:
     repo: 'git@bitbucket.org:msc1917/ansible.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/ansible.git'
-    dest: /home/{{ default_user.dev_user }}/script/ansible-prod
+    dest: /home/{{ default_user.dev_user }}/lib/git/ansible-prod
     version: master
     accept_hostkey: yes
     key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
@@ -52,7 +52,7 @@
   git:
     repo: 'git@bitbucket.org:msc1917/ansible.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/ansible.git'
-    dest: /home/{{ default_user.dev_user }}/script/ansible-dev
+    dest: /home/{{ default_user.dev_user }}/lib/git/ansible-dev
     version: development
     accept_hostkey: yes
     key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
@@ -65,6 +65,21 @@
     - development.get_git_repositories
     - "'production' in ansible_release"
     # - development.repository_baikonur
+
+- name: Set up work GIT-Repository
+  git:
+    repo: 'git@bitbucket.org:msc1917/kubernetes.git'
+    # repo: 'https://msc1917@bitbucket.org/msc1917/kubernetes.git'
+    dest: /home/{{ default_user.dev_user }}/script/kubernetes
+    accept_hostkey: yes
+    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    update: no
+  become: yes
+  become_user: "{{ default_user.dev_user }}"
+  ignore_errors: yes
+  when: 
+    - development.get_git_repositories
+    - ("kubectl" in software)
 
 - name: Update .profile with PYTHONPATH
   lineinfile:

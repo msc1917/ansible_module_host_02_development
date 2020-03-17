@@ -1,6 +1,8 @@
 enviroment:
   gui_system: false
 
+software: []
+
 development:
   get_git_repositories: true
   repository_baikonur: true

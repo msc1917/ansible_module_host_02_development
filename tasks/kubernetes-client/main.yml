@@ -1,0 +1,10 @@
+---
+- name: Install kubectl for kubernetes
+  include_tasks: kubernetes-client/install_software.yml
+  when:
+  - ("kubectl" in software)
+
+- name: Setup kubectl for kubernetes
+  include_tasks: kubernetes-client/setup.yml
+  when:
+  - ("kubectl" in software)

@@ -1,0 +1,34 @@
+---
+- name: Create Kubernetes config directory
+  file:
+    path: "/home/{{ default_user.dev_user }}/.kube/"
+    owner: "{{ default_user.dev_user }}"
+    group: "{{ default_user.dev_user }}"
+    mode: '0755'
+    state: directory
+  become: yes
+
+- name: Copy admin.conf to Home directory
+  copy:
+    src: "{{ inventory_dir }}/dynamic_vars/files/config/kubernetes/kubeadm_admin.conf"
+    dest: "/home/{{ default_user.dev_user }}/.kube/admin.conf"
+    owner: "{{ default_user.dev_user }}"
+    group: "{{ default_user.dev_user }}"
+    mode: '0755'
+  ignore_errors: yes
+  become: yes
+
+- name: Update .profile
+  lineinfile:
+    dest: "/home/{{ default_user.dev_user }}/.profile"
+    line: 'export KUBECONFIG=/home/{{ default_user.dev_user }}/.kube/admin.conf'
+    regexp: '^export KUBECONFIG=' 
+    insertafter: "EOF"
+    state: present
+  become: yes
+
+- name: Setup bash-completion kubectl
+  shell:
+    cmd: "kubectl completion bash >/etc/bash_completion.d/kubectl"
+    creates: /etc/bash_completion.d/kubectl
+  become: yes

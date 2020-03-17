@@ -9,9 +9,16 @@
 - name: Set up system for development
   include_tasks: system/main.yml
 
-- name: Set up system for ansible
-  include_tasks: ansible/main.yml
-
 - name: Set up GIT-Repositories for development-user
   include_tasks: git/main.yml
   when: not dev_user_exists.failed
+
+- name: Set up system for ansible
+  include_tasks: ansible/main.yml
+  when:
+  - ("ansible" in software)
+
+- name: Set up system for kubernetes client
+  include_tasks: kubernetes-client/main.yml
+  when:
+  - ("kubectl" in software)
