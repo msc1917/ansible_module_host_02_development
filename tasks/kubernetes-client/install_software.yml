@@ -11,16 +11,6 @@
     - ansible_distribution == "Debian"
     - ansible_distribution_release == "buster"
 
-# - name: Add kubernetes repository for Debian Buster
-#   apt_repository:
-#     repo: "{{ item }}"
-#     state: absent
-#   with_items:
-#     - deb https://apt.kubernetes.io/ kubernetes-buster main
-#   when: 
-#     - ansible_distribution == "Debian"
-#     - ansible_distribution_release == "buster"
-
 - name: Add kubernetes repository for Debian Buster
   apt_repository:
     repo: "{{ item }}"

@@ -2,5 +2,8 @@
 - name: Generate directories for development-user
   include_tasks: system/directories.yml
 
+- name: Generate config_files for development-user
+  include_tasks: system/config_files.yml
+
 - name: Install python
   include_tasks: system/install_software.yml

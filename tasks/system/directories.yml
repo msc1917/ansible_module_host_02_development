@@ -9,23 +9,25 @@
   become: yes
   with_items:
    - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/script'               }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/log'                  }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data'                 }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/lib'                  }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/etc'                  }
    - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/script/kubernetes'    }
    - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/script/ansible'       }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/baikonur'      }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/itsv'          }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data'                 }
    - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/data/kubernetes'      }
+   - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/data/sensibleData'    }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/baikonur'        }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/itsv'            }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/log'                  }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/log/baikonur'         }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/log/itsv'             }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/lib'                  }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/lib/git'              }
    - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/lib/git/ansible-dev'  }
    - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/lib/git/ansible-prod' }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/bin'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/etc'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/.private'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/.private/bin'                  }
   when:
-   - ("git" in software)
-   - development.get_git_repositories
    - ( item["software"] == 'all' or item["software"] in software )
