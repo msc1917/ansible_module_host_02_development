@@ -15,7 +15,7 @@
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/itsv'          }
    - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data'                 }
    - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/data/kubernetes'      }
-   - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/data/sensibleData'    }
+   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data/sensibleData'    }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/baikonur'        }
    - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/itsv'            }
    - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/log'                  }

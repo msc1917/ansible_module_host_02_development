@@ -1,5 +1,7 @@
 { "script":  "/home/{{ default_user.dev_user }}/script/baikonur",
   "data": 	 "/home/{{ default_user.dev_user }}/data/baikonur",
-  "log": 	 "/home/{{ default_user.dev_user }}/log/baikonur",
-  "ansible": "/home/{{ default_user.dev_user }}/script/ansible"
+{% if do_ansible %}
+  "ansible": "/home/{{ default_user.dev_user }}/script/ansible",
+{% endif %}
+  "log": 	 "/home/{{ default_user.dev_user }}/log/baikonur"
 }
