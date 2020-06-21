@@ -29,6 +29,6 @@
 
 - name: Setup bash-completion kubectl
   shell:
-    cmd: "kubectl completion bash >/etc/bash_completion.d/kubectl"
+    cmd: "kubectl completion bash > /etc/bash_completion.d/kubectl"
     creates: /etc/bash_completion.d/kubectl
   become: yes

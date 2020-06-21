@@ -1,3 +1,6 @@
 ---
+- name: Install additional software
+  include_tasks: ansible/install_software.yml
+
 - name: Set up Ansible for development-user
   include_tasks: ansible/setup.yml
