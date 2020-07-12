@@ -3,31 +3,31 @@
   file:
     path: "{{ item.directory }}"
     state: directory
-    owner: "{{ default_user.dev_user }}"
-    group: "{{ default_user.dev_user }}"
+    owner: "{{ default_user.dev.user }}"
+    group: "{{ default_user.dev.group }}"
     mode: '0775'
   become: yes
   with_items:
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/script'               }
-   - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/script/kubernetes'    }
-   - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/script/ansible'       }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/baikonur'      }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/script/itsv'          }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data'                 }
-   - { software: 'kubectl', directory: '/home/{{ default_user.dev_user }}/data/kubernetes'      }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/data/sensibleData'    }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/baikonur'        }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/data/itsv'            }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/log'                  }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/log/baikonur'         }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/log/itsv'             }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/lib'                  }
-   - { software: 'git',     directory: '/home/{{ default_user.dev_user }}/lib/git'              }
-   - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/lib/git/ansible-dev'  }
-   - { software: 'ansible', directory: '/home/{{ default_user.dev_user }}/lib/git/ansible-prod' }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/bin'                  }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/etc'                  }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/.private'                  }
-   - { software: 'all',     directory: '/home/{{ default_user.dev_user }}/.private/bin'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/script'               }
+   - { software: 'kubectl', directory: '/home/{{ default_user.dev.user }}/script/kubernetes'    }
+   - { software: 'ansible', directory: '/home/{{ default_user.dev.user }}/script/ansible'       }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/script/baikonur'      }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/script/itsv'          }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/data'                 }
+   - { software: 'kubectl', directory: '/home/{{ default_user.dev.user }}/data/kubernetes'      }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/data/sensibleData'    }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/data/baikonur'        }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/data/itsv'            }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/log'                  }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/log/baikonur'         }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/log/itsv'             }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/lib'                  }
+   - { software: 'git',     directory: '/home/{{ default_user.dev.user }}/lib/git'              }
+   - { software: 'ansible', directory: '/home/{{ default_user.dev.user }}/lib/git/ansible-dev'  }
+   - { software: 'ansible', directory: '/home/{{ default_user.dev.user }}/lib/git/ansible-prod' }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/bin'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/etc'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/.private'                  }
+   - { software: 'all',     directory: '/home/{{ default_user.dev.user }}/.private/bin'                  }
   when:
    - ( item["software"] == 'all' or item["software"] in software )

@@ -2,9 +2,9 @@
 - name: Copy Key-File for Git-Repository
   copy:
     src: "{{ role_path }}/files/id_rsa.git"
-    dest: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
-    owner: "{{ default_user.dev_user }}"
-    group: "{{ default_user.dev_user }}"
+    dest: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git"
+    owner: "{{ default_user.dev.user }}"
+    group: "{{ default_user.dev.user }}"
     mode: '0600'
   become: yes
   when: 
@@ -13,9 +13,9 @@
 - name: Copy Public Key-File for Git-Repository
   copy:
     src: "{{ role_path }}/files/id_rsa.git.pub"
-    dest: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git.pub"
-    owner: "{{ default_user.dev_user }}"
-    group: "{{ default_user.dev_user }}"
+    dest: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git.pub"
+    owner: "{{ default_user.dev.user }}"
+    group: "{{ default_user.dev.user }}"
     mode: '0644'
   become: yes
   when: 
@@ -25,16 +25,16 @@
     name: user.name
     scope: global
     value: '{{ git_user.name }}'
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
 
 - git_config:
     name: user.email
     scope: global
     value: '{{ git_user.email }}'
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
 
 - git_config:
     name: core.sshCommand
     scope: global
     value: 'ssh -i ~/.ssh/id_rsa.git -F /dev/null'
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"

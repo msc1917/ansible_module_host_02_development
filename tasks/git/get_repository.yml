@@ -3,13 +3,13 @@
   git:
     repo: 'git@bitbucket.org:msc1917/privatecode.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/privatecode.git'
-    dest: /home/{{ default_user.dev_user }}/script/baikonur
+    dest: /home/{{ default_user.dev.user }}/script/baikonur
     version: development
     accept_hostkey: yes
-    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    key_file: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git"
     update: no
   become: yes
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
   ignore_errors: yes
   when: 
     - development.get_git_repositories
@@ -19,12 +19,12 @@
   git:
     repo: 'git@bitbucket.org:msc1917/workcode.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/workcode.git'
-    dest: /home/{{ default_user.dev_user }}/script/itsv
+    dest: /home/{{ default_user.dev.user }}/script/itsv
     accept_hostkey: yes
-    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    key_file: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git"
     update: no
   become: yes
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
   ignore_errors: yes
   when: 
     - development.get_git_repositories
@@ -34,13 +34,13 @@
   git:
     repo: 'git@bitbucket.org:msc1917/ansible.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/ansible.git'
-    dest: /home/{{ default_user.dev_user }}/lib/git/ansible-prod
+    dest: /home/{{ default_user.dev.user }}/lib/git/ansible-prod
     version: master
     accept_hostkey: yes
-    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    key_file: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git"
     update: no
   become: yes
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
   ignore_errors: yes
   when: 
     - do_ansible
@@ -52,13 +52,13 @@
   git:
     repo: 'git@bitbucket.org:msc1917/ansible.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/ansible.git'
-    dest: /home/{{ default_user.dev_user }}/lib/git/ansible-dev
+    dest: /home/{{ default_user.dev.user }}/lib/git/ansible-dev
     version: development
     accept_hostkey: yes
-    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    key_file: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git"
     update: no
   become: yes
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
   ignore_errors: yes
   when: 
     - do_ansible
@@ -70,12 +70,12 @@
   git:
     repo: 'git@bitbucket.org:msc1917/kubernetes.git'
     # repo: 'https://msc1917@bitbucket.org/msc1917/kubernetes.git'
-    dest: /home/{{ default_user.dev_user }}/script/kubernetes
+    dest: /home/{{ default_user.dev.user }}/script/kubernetes
     accept_hostkey: yes
-    key_file: "/home/{{ default_user.dev_user }}/.ssh/id_rsa.git"
+    key_file: "/home/{{ default_user.dev.user }}/.ssh/id_rsa.git"
     update: no
   become: yes
-  become_user: "{{ default_user.dev_user }}"
+  become_user: "{{ default_user.dev.user }}"
   ignore_errors: yes
   when: 
     - development.get_git_repositories
@@ -83,8 +83,8 @@
 
 - name: Update .profile with PYTHONPATH
   lineinfile:
-    dest: "/home/{{ default_user.dev_user }}/.profile"
-    line: 'export PYTHONPATH=/home/{{ default_user.dev_user }}/script/baikonur/python/modules:/home/{{ default_user.dev_user }}/scripts/itsv/functions/modules:$PYTHONPATH'
+    dest: "/home/{{ default_user.dev.user }}/.profile"
+    line: 'export PYTHONPATH=/home/{{ default_user.dev.user }}/script/baikonur/python/modules:/home/{{ default_user.dev.user }}/scripts/itsv/functions/modules:$PYTHONPATH'
     insertafter: "EOF"
     regexp: '^export PYTHONPATH=' 
     state: present

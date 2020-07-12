@@ -2,7 +2,7 @@
 - name: Check for development-user
   getent: 
     database: passwd 
-    key: "{{ default_user.dev_user }}"
+    key: "{{ default_user.dev.user }}"
   become: yes
   register: dev_user_exists
 

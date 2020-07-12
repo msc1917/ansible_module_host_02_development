@@ -1,8 +1,8 @@
 ---
 - name: Update .profile with ANSIBLE_CONFIG
   lineinfile:
-    dest: "/home/{{ default_user.dev_user }}/.profile"
-    line: 'export ANSIBLE_CONFIG=/home/{{ default_user.dev_user }}/{{ ansible_dir[use_ansible] }}/config/ansible.cfg'
+    dest: "/home/{{ default_user.dev.user }}/.profile"
+    line: 'export ANSIBLE_CONFIG=/home/{{ default_user.dev.user }}/{{ ansible_dir[use_ansible] }}/config/ansible.cfg'
     insertafter: "EOF"
     regexp: '^export ANSIBLE_CONFIG=' 
     state: present

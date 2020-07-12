@@ -2,10 +2,10 @@
 - name: Generiere Config-Files
   template:
     src: "sensible_data/{{ item }}.j2"
-    dest: "/home/{{ default_user.dev_user }}/data/sensibleData/{{ item }}"
+    dest: "/home/{{ default_user.dev.user }}/data/sensibleData/{{ item }}"
     mode: '0600'
-    owner: "{{ default_user.dev_user }}"
-    group: "{{ default_user.dev_user }}"
+    owner: "{{ default_user.dev.user }}"
+    group: "{{ default_user.dev.group }}"
   become: yes
   with_items:
     - "path.json"
